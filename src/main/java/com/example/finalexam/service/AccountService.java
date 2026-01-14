@@ -39,7 +39,7 @@ public class AccountService {
     }
 
     public AccountEntity deposit(Long id, Double amount) {
-        AccountEntity entity = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException());
+        AccountEntity entity = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not found"));
 
         Account model = toModel(entity);
 
@@ -49,7 +49,7 @@ public class AccountService {
     }
 
     public AccountEntity withdraw(Long id, Double amount) {
-        AccountEntity entity = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException());
+        AccountEntity entity = accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not found"));
 
         Account model = toModel(entity);
 
@@ -94,6 +94,7 @@ public class AccountService {
     private AccountEntity toEntity(Account account) {
         AccountEntity entity = new AccountEntity();
 
+        entity.setId(account.getId());
         entity.setOwnerName(account.getOwnerName());
         entity.setIban(account.getIban());
         entity.setBalance(account.getBalance());

@@ -1,5 +1,6 @@
 package com.example.finalexam.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class TransactionEntity {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference
     private AccountEntity account;
 
     public Long getId() {

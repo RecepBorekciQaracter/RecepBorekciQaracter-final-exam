@@ -17,6 +17,7 @@ public class AccountEntity {
     private String iban;
     private Double balance;
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<TransactionEntity> transactions;
 
     public Long getId() {
